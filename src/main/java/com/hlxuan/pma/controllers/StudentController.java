@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("student")
+@RequestMapping("students")
 public class StudentController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class StudentController {
 
         Student aStudent = new Student();
         model.addAttribute("student", aStudent);
-        return "new-student";
+        return "students/new-student";
     }
 
     @PostMapping("/save")
@@ -29,6 +29,6 @@ public class StudentController {
 
         studentRepository.save(student);
 
-        return "redirect:/student/new";
+        return "redirect:/students/new";
     }
 }
