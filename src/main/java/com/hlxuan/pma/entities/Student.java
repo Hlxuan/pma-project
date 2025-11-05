@@ -1,9 +1,6 @@
 package com.hlxuan.pma.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Student {
@@ -15,6 +12,10 @@ public class Student {
     private String name;
     private String wechatId;
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project theProject;
 
     public Student() {
     }
