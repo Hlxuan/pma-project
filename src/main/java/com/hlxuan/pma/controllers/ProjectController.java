@@ -48,10 +48,7 @@ public class ProjectController {
         projectRepository.save(project);
         Iterable<Student> chosenStudents = studentRepository.findAllById(students);
 
-        for(Student student : chosenStudents){
-            student.setProject(project);
-            studentRepository.save(student);
-        }
+        projectRepository.save(project);
 
         return "redirect:/projects/new";
     }

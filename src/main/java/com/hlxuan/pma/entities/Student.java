@@ -2,6 +2,8 @@ package com.hlxuan.pma.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Student {
 
@@ -13,24 +15,28 @@ public class Student {
     private String wechatId;
     private String email;
 
-    @ManyToOne(cascade = {
+    @ManyToMany(cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
             CascadeType.REFRESH,
             CascadeType.PERSIST,
     }, fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id")
-    private Project Project;
+    @JoinTable(
+            name = "project_student",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns =  @JoinColumn(name = "project_id")
+    )
+    private List<Project> projects;
 
     public Student() {
     }
 
-    public Project getProject() {
-        return Project;
+    public List<Project> getProjects() {
+        return projects;
     }
 
-    public void setProject(Project project) {
-        Project = project;
+    public void setProject(List<Project> projects) {
+        this.projects = projects;
     }
 
     public Student(String name, String wechatId, String email) {

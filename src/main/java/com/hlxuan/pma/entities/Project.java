@@ -13,7 +13,20 @@ public class Project {
     private String stage;
     private String description;
 
-    @OneToMany(mappedBy = "Project")
+    @ManyToMany(
+            cascade = {
+                    CascadeType.DETACH,
+                    CascadeType.MERGE,
+                    CascadeType.REFRESH,
+                    CascadeType.PERSIST,
+            },
+            fetch = FetchType.LAZY
+    )
+    @JoinTable(
+            name = "project_student",
+            joinColumns =  @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
     private List<Student> students;
 
     public long getProjectId() {
