@@ -35,7 +35,7 @@ public class Student {
         return projects;
     }
 
-    public void setProject(List<Project> projects) {
+    public void setProjects(List<Project> projects) {
         this.projects = projects;
     }
 
