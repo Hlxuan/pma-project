@@ -36,7 +36,6 @@ public class StudentController {
 
     @PostMapping("/save")
     public String createStudent(Model model, Student student){
-
         studentRepository.save(student);
 
         return "redirect:/students/new";
