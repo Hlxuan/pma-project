@@ -9,6 +9,7 @@ import com.hlxuan.pma.dao.dto.StudentProject;
 import com.hlxuan.pma.entities.Project;
 import com.hlxuan.pma.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,9 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    @Value("${version}")
+    private String version;
+
     @Autowired
     ProjectRepository projectRepository;
 
@@ -26,6 +30,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String displayHome(Model model) throws JsonProcessingException {
+
+        model.addAttribute("versionNumber", version);
 
         List<Project> projects = projectRepository.findAll();
         model.addAttribute("projects", projects);
