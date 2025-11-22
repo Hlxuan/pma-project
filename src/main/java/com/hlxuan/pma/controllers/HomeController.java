@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @Value("${envVersionNum:未获取到}")
+    @Value("${version:未获取到}")
     private String version;
 
     @Autowired
